@@ -10,12 +10,15 @@ class PaginationView extends View {
       this._data.results.length / this._data.resultsPerPage
     );
 
+    // No results
+    if (numPages === 0) return '';
+
     // Page 1, and there are other pages
     if (curPage === 1 && numPages > 1) {
       return this._generateMarkupButton(curPage + 1, false);
     }
     // Last page
-    if (curPage === numPages) {
+    if (curPage === numPages && curPage > 1) {
       return this._generateMarkupButton(curPage - 1);
     }
     // Other pages
